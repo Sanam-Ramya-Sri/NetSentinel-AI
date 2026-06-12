@@ -140,6 +140,6 @@ Dashboard & Alert System
 
 **Sanam Ramya Sri**
 
-B.Tech (Computer Science & Engineering) | SRKR Engineering College
+B.Tech (Information Technology) | SRKR Engineering College
 
 Python Developer • Cybersecurity Enthusiast • AI & Data Science Learner
