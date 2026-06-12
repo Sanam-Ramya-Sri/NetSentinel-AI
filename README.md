@@ -1,135 +1,145 @@
-# Network Intrusion Detection System (NIDS)
+# 🛡️ NetSentinel AI
 
-A Python-based network intrusion detection system that monitors live network traffic and alerts on suspicious activity in real time.
+> **AI-Powered Network Intrusion Detection System (NIDS) for Real-Time Threat Detection and Security Analytics**
 
-Built with [Scapy](https://scapy.net/), [Rich](https://github.com/Textualize/rich), and [Pandas](https://pandas.pydata.org/).
-
----
-
-## Features
-
-- **Port Scan Detection** — detects when a single IP probes many ports within a short time window
-- **SYN Flood Detection** — detects high-volume SYN packets targeting a single port
-- **ICMP Sweep Detection** — detects ping sweeps across multiple hosts
-- **Suspicious DNS Detection** — flags DNS queries to known malicious domains using a live threat feed from [Abuse.ch URLhaus](https://urlhaus.abuse.ch/)
-- **Packet Logging** — all captured traffic is saved to a CSV file on exit
-- **Alert Summary** — a summary of all triggered alerts is displayed on shutdown
+NetSentinel AI is a machine learning-driven Network Intrusion Detection System (NIDS) that monitors live network traffic, detects malicious activities, and provides real-time security insights. The system combines packet inspection, behavioral analysis, and AI-based threat classification to identify cyberattacks and suspicious network behavior with high accuracy.
 
 ---
 
-## Project Structure
+## 🚀 Key Highlights
 
+✅ Real-Time Network Traffic Monitoring
+
+✅ AI-Based Threat Detection & Classification
+
+✅ Multi-Attack Detection Engine
+
+✅ Interactive Security Analytics Dashboard
+
+✅ Automated Alerts & Incident Tracking
+
+✅ FastAPI-Powered Scalable Backend
+
+---
+
+## 🔍 Core Features
+
+### 🌐 Network Monitoring
+
+* Live packet capture using Scapy
+* Protocol and traffic flow analysis
+* Continuous network visibility
+
+### 🤖 AI Threat Detection
+
+* Machine learning-based attack classification
+* Behavioral anomaly detection
+* Detection of known and unknown threats
+
+### 🛡️ Attack Detection
+
+* Port Scan Detection
+* SYN Flood Detection
+* ICMP Sweep Detection
+* Brute Force Detection
+* DNS Threat Detection
+* DoS/DDoS Attack Detection
+
+### 📊 Security Dashboard
+
+* Real-time threat visualization
+* Traffic analytics and statistics
+* Historical attack insights
+* Security event monitoring
+
+### 🚨 Alert Management
+
+* Instant threat notifications
+* Automated incident logging
+* Security reporting and tracking
+
+---
+
+## 🏗️ Architecture
+
+```text
+Network Traffic
+      │
+      ▼
+Packet Capture (Scapy)
+      │
+      ▼
+Feature Extraction
+      │
+      ▼
+Machine Learning Engine
+(Random Forest / XGBoost)
+      │
+      ▼
+Threat Classification
+      │
+      ├── Port Scan
+      ├── SYN Flood
+      ├── ICMP Sweep
+      ├── Brute Force
+      ├── DoS/DDoS
+      └── DNS Threat
+      │
+      ▼
+FastAPI Backend
+      │
+      ▼
+Dashboard & Alert System
 ```
-NIDS/
-├── main.py          # Entry point
-├── sniffer.py       # Packet capture and callback logic
-├── detectors.py     # Detection engine (port scan, SYN flood, ICMP sweep, DNS)
-├── config.py        # Thresholds, constants, and interface settings
-├── logger.py        # Shared state — packet log, alert tracker, trackers
-├── feeds.py         # Threat intelligence feed fetching (Abuse.ch URLhaus)
-├── ui.py            # Terminal output and alert formatting
-├── requirements.txt
-└── README.md
-```
+
+## 🛠️ Technology Stack
+
+| Category         | Technologies                         |
+| ---------------- | ------------------------------------ |
+| Backend          | Python, FastAPI, Scapy               |
+| Machine Learning | Scikit-Learn, Random Forest, XGBoost |
+| Frontend         | React.js, Tailwind CSS, Chart.js     |
+| Database         | PostgreSQL, MongoDB                  |
+| DevOps           | Docker, GitHub Actions               |
 
 ---
 
-## Requirements
+## 🎯 Applications
 
-- Python 3.10+
-- Linux (tested on Kali Linux)
-- `libpcap` installed on the system:
-
-```bash
-sudo apt install libpcap-dev
-```
-
----
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/szymnli/Network-Intrusion-Detection-System.git
-cd Network-Intrusion-Detection-System
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
+* Enterprise Network Security
+* Security Operations Centers (SOC)
+* Cybersecurity Research
+* Academic Security Labs
+* Threat Intelligence Monitoring
+* Network Traffic Analysis
 
 ---
 
-## Usage
+## 🔮 Future Scope
 
-The sniffer requires root privileges to capture raw packets:
-
-```bash
-sudo venv/bin/python main.py
-```
-
-On startup the program will:
-1. Fetch the latest malicious domain list from Abuse.ch
-2. Begin capturing traffic on the configured interface
-3. Print live packet info to the terminal
-4. Alert in real time when an attack pattern is detected
-5. On `Ctrl+C`, display an alert summary and save all captured packets to `capture.csv`
+* Deep Learning-Based Threat Detection
+* SIEM Integration
+* Cloud Security Monitoring
+* Threat Intelligence Feeds
+* Automated Incident Response
+* LLM-Powered Threat Explanation
 
 ---
 
-## Configuration
+## 📈 Impact
 
-All tunable parameters are in `config.py`:
-
-| Parameter | Default | Description |
-|---|---|---|
-| `IFACE` | `eth0` | Network interface to monitor |
-| `TIME_WINDOW` | `10` | Seconds to look back for pattern detection |
-| `PORT_SCAN_THRESHOLD` | `15` | Unique ports before port scan alert |
-| `SYN_FLOOD_THRESHOLD` | `100` | SYN packets to one port before flood alert |
-| `ICMP_SWEEP_THRESHOLD` | `20` | Unique hosts pinged before sweep alert |
-| `ALERT_COOLDOWN` | `300` | Seconds before re-alerting on the same IP |
+* Strengthens proactive cyber defense.
+* Detects threats in real time.
+* Reduces incident response time.
+* Improves network visibility and security monitoring.
+* Combines traditional NIDS techniques with AI-driven intelligence.
 
 ---
 
-## Detection Logic
+## 👩‍💻 Author
 
-### Port Scan
-Tracks the number of unique destination ports contacted by each source IP within `TIME_WINDOW` seconds. Triggers when the count exceeds `PORT_SCAN_THRESHOLD`. Only SYN packets are counted.
+**Sanam Ramya Sri**
 
-### SYN Flood
-Tracks the number of SYN packets sent by a source IP to a single destination port within `TIME_WINDOW` seconds. Triggers when the count exceeds `SYN_FLOOD_THRESHOLD`.
+B.Tech (Computer Science & Engineering) | SRKR Engineering College
 
-### ICMP Sweep
-Tracks the number of unique destination IPs that a source IP sends ICMP echo requests (type 8) to within `TIME_WINDOW` seconds. Triggers when the count exceeds `ICMP_SWEEP_THRESHOLD`.
-
-### Suspicious DNS
-On every DNS query (UDP port 53), the queried domain is extracted and checked against a blocklist fetched from Abuse.ch URLhaus at startup. Any match triggers an immediate alert.
-
----
-
-## Testing
-
-All testing should be done in an isolated lab environment. A safe setup is two virtual machines connected via a **Host-Only Network** in VirtualBox.
-
-| Attack | Tool | Command |
-|---|---|---|
-| Port scan | nmap | `sudo nmap -sS <target-ip>` |
-| SYN flood | hping3 | `sudo hping3 -S -p 80 --flood <target-ip>` |
-| ICMP sweep | nmap | `sudo nmap -sn --send-ip <subnet>/24` |
-| DNS test | browser | Visit any domain in the blocklist, or add a known domain temporarily to test |
-
-> **Warning:** Only run these tools against machines you own. Never test on a real network without explicit permission.
-
----
-
-## Output
-
-Captured packets are saved to `capture.csv` on exit with the following fields:
-
-`Protocol`, `Source IP`, `Source Port`, `Destination IP`, `Destination Port`, `Packet Length`, `TCP Flag`, `ICMP Type`, `Timestamp`
-
-> `capture.csv` is excluded from version control via `.gitignore` as it may contain sensitive network data.
+Python Developer • Cybersecurity Enthusiast • AI & Data Science Learner
